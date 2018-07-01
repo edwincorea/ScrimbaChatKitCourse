@@ -1,4 +1,4 @@
-# Course introduction
+# Outro
 
 Quick start:
 

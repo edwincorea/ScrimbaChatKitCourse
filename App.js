@@ -35,6 +35,8 @@ class App extends React.Component {
         chatManager.connect()
         .then(currentUser => {
             this.currentUser = currentUser
+            // Add online users component
+            // console.log(this.currentUser.rooms[3].userIds)
             this.getRooms()
         })
         .catch(err => console.log('error on connecting: ', err))
@@ -60,7 +62,11 @@ class App extends React.Component {
                     this.setState({
                         messages: [...this.state.messages, message]
                     })
+                },
+                onUserStartedTyping: user => {
+                    // render out users component
                 }
+                
             }
         })
         .then(room => {
@@ -83,7 +89,9 @@ class App extends React.Component {
         this.currentUser.createRoom({
             name
         })
-        .then(room => this.subscribeToRoom(room.id))
+        .then(room => {
+            this.subscribeToRoom(room.id)
+        })
         .catch(err => console.log('error with createRoom: ', err))
     }
     

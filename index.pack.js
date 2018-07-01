@@ -1118,6 +1118,8 @@ var App = function (_React$Component) {
 
             chatManager.connect().then(function (currentUser) {
                 _this2.currentUser = currentUser;
+                // Add online users component
+                // console.log(this.currentUser.rooms[3].userIds)
                 _this2.getRooms();
             }).catch(function (err) {
                 return console.log('error on connecting: ', err);
@@ -1150,7 +1152,11 @@ var App = function (_React$Component) {
                         _this4.setState({
                             messages: [].concat(_toConsumableArray(_this4.state.messages), [message])
                         });
+                    },
+                    onUserStartedTyping: function onUserStartedTyping(user) {
+                        // render out users component
                     }
+
                 }
             }).then(function (room) {
                 _this4.setState({
@@ -1177,7 +1183,7 @@ var App = function (_React$Component) {
             this.currentUser.createRoom({
                 name: name
             }).then(function (room) {
-                return _this5.subscribeToRoom(room.id);
+                _this5.subscribeToRoom(room.id);
             }).catch(function (err) {
                 return console.log('error with createRoom: ', err);
             });
